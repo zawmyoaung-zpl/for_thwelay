@@ -269,7 +269,7 @@
 
         #main-menu-page, #album-page, #propose-page {
             flex-grow: 1;
-            padding-top: calc(65px + var(--safe-top)); 
+px            padding-top: calc(65 + var(--safe-top)); 
             min-height: 100vh;
             padding-bottom: 50px;
             box-sizing: border-box;
@@ -280,7 +280,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            padding-top: 60px;
+            padding-top: 40px;
             padding-left: 20px;
             z-index: 1;
             font-family: Times New Roman;
@@ -932,17 +932,26 @@
 </>
 
 <!-- Audio Files -->
-<audio id="audio-home" src="main.mp3" preload="auto"></audio>
-<audio id="audio-luv" src="album.mp3" loop preload="auto"></audio>
-<audio id="audio-wishes" src="letter-page.mp3" preload="auto"></audio>
+<audio id="audio-home" src="main.mp3" preload="auto" lood></audio>
+<audio id="audio-luv" src="album.mp3" loop preload="auto" lood></audio>
+<audio id="audio-wishes" src="letter-page.mp3" preload="auto" lood></audio>
 
 <script>
-    // --- OPEN ခလုတ်နှိပ်ပါက Countdown မရှိဘဲ Main Page သို့ တန်းရောက်ပြီး သီချင်းစတင်မည် ---
+    //     // --- OPEN ခလုတ်နှိပ်ပါက Countdown မရှိဘဲ Main Page သို့ တန်းရောက်ပြီး သီချင်းစတင်မည် ---
     function startSurprise() {
         const cardOverlay = document.getElementById("card-overlay");
         if (cardOverlay) cardOverlay.style.display = "none";
+        
+        // Main page ကို ပြပါ
         showPage('main-menu-page');
+
+        // [အဓိက ထည့်ရန်] User Click နှိပ်လိုက်သည့် ဤအချိန်တွင် အသံကို ချက်ချင်းစတင် play ခိုင်းပါ
+        const homeAudio = document.getElementById("audio-home");
+        if (homeAudio) {
+            homeAudio.play().catch(e => console.log("Audio play blocked by browser:", e));
+        }
     }
+
 
     // --- App Navigation & Music Logic ---
     const pages = ['main-menu-page', 'album-page', 'propose-page', 'Age-Cal', 'about-view'];
